@@ -11,3 +11,6 @@ def get_verbal_input():
     result = r.recognize_google(audio)
     return result
 
+if __name__ == "__main__":
+    x = get_verbal_input()
+    print(x)
