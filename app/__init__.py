@@ -1,4 +1,4 @@
-from speech_recognition import Recognizer, Microphone
+from speech_recognition import Recognizer, Microphone, UnknownValueError
 
 
 def get_verbal_input():
@@ -8,7 +8,10 @@ def get_verbal_input():
     with mic as source:
         r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
+try:
     result = r.recognize_google(audio)
+except UnknownValueError:
+    result = ""
     return result
 
 if __name__ == "__main__":
