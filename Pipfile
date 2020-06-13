@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 SpeechRecognition = "==3.8.1"
 pyaudio = "*"
+spotify-local-control = "*"
 
 [requires]
 python_version = "3.8"

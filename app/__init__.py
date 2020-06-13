@@ -1,5 +1,6 @@
 from speech_recognition import Recognizer, Microphone
 from os import system
+from spotify_local import SpotifyLocal
 
 def get_verbal_input() -> str:
     listener = Recognizer()
@@ -12,6 +13,12 @@ def get_verbal_input() -> str:
     return result
 
 
+def set_of_commands() -> set:
+    return {
+        "open", "status"
+    }
+
+
 def get_commands(v_input: str) -> str:
     v_command = ""
     words = v_input.split(" ")
@@ -20,9 +27,16 @@ def get_commands(v_input: str) -> str:
             v_command = word
     return v_command
 
+def open_spotify():
+    system("open /Applications/Spotify.app")
+    print("opening Spotify")
+
 def run_command(v_command: str):
-    if v_command == "music":
-        system("open  /Applications/Spotify.app/")
+    if v_command == "open":
+        open_spotify()
+    elif v_command == "status":
+        with SpotifyLocal() as s:
+             print(s.get_current_status())
 
 
 if __name__ == "__main__":
